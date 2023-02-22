@@ -2,11 +2,11 @@
 import os
 # Required parameters:
 # @raycast.schemaVersion 1
-# @raycast.title Jebrain Idea
+# @raycast.title Idea
 # @raycast.mode compact
 
 # Optional parameters:
-# @raycast.icon 🤖
+# @raycast.icon IDEA
 # @raycast.argument1 { "type": "text", "placeholder": "Project Name" }
 # @raycast.needsConfirmation false
 
@@ -15,7 +15,13 @@ from base import JetBrainsUtils
 
 jetbrains = JetBrainsUtils.JetBrainsUtils("/usr/local/bin/idea")
 jobs = jetbrains.readFile()
+noObject = True
+objectName = sys.argv[1]
 for job in jobs:
-    if job.endswith("/" + sys.argv[1]):
+    if job.endswith("/" + objectName):
+        noObject = False
         idea_job = "/usr/local/bin/idea " + job
         os.system(idea_job)
+
+if noObject:
+    print("没有对应的项目 " + objectName)
