@@ -10,6 +10,10 @@ class JetBrainsUtils:
     SYSTEM_PATH = ""
 
     def __init__(self, binPath):
+        JetBrainsUtils.CONFIG_PATH = "/Users/reasonknow/Library/Application Support/JetBrains/IntelliJIdea2023.1"
+
+    @staticmethod
+    def init(binPath):
         binFile = open(binPath)
         line = binFile.readline()  # 调用文件的 readline()方法
         while line:
