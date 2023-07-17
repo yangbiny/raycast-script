@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import os
+import subprocess
 # Required parameters:
 # @raycast.schemaVersion 1
 # @raycast.title Idea
@@ -13,14 +14,18 @@ import os
 import sys
 from base import JetBrainsUtils
 
-jetbrains = JetBrainsUtils.JetBrainsUtils("/usr/local/bin/idea")
+jetbrains = JetBrainsUtils.JetBrainsUtils("")
 jobs = jetbrains.readFile()
 noObject = True
-objectName = sys.argv[1]
+# objectName = sys.argv[1]
+objectName = "acm-api"
+# ideaPath = os.popen('which idea').readlines()[0].strip()
+ideaPath = "/Applications/IntelliJ\ IDEA.app/Contents/MacOS/idea"
 for job in jobs:
     if job.endswith("/" + objectName):
         noObject = False
-        idea_job = "/usr/local/bin/idea " + job
+        idea_job = ideaPath
+        print(idea_job)
         os.system(idea_job)
 
 if noObject:
